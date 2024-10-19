@@ -1,0 +1,42 @@
+hydra:
+  run:
+    dir: .
+
+data:
+  train_path: /dtu/datasets1/imagenet_object_localization_patched2019/ILSVRC/Data/CLS-LOC/train
+  val_path: /dtu/datasets1/imagenet_object_localization_patched2019/ILSVRC/Data/CLS-LOC/val
+
+model:
+  name: mae_vit_base_patch16_small_decoder
+  norm_pix_loss: true
+
+experiment:
+  name: pretrain_in1k_0.75
+  seed: 42
+
+training:
+  epochs: 800
+  base_learning_rate: 0.00015
+  batch_size: 256
+  effective_batch_size: 4096 # Has to be a multiplier of batch_size
+  num_workers: 4
+  check_val_every_n_epoch: 10
+  overfit_batches: 0 # Use all data
+  
+optimizer:
+  name: adamw
+  beta1: 0.9
+  beta2: 0.95
+  weight_decay: 0.05
+
+scheduler:
+  warmup_epochs: 40
+
+compute:
+  accelerator: gpu
+  devices: 4
+
+mae:
+  mask_ratio: 0.75
+
+resume_from_checkpoint: null
