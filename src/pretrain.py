@@ -11,8 +11,6 @@ from src.utils.utils import set_seed
 from src.models.lightning_models import SelfSupervisedModel
 from src.data.in1k_data import SSLDataModule
 
-import multiprocessing as mp
-
 @hydra.main(config_path="../configs/pretraining", config_name="pretrain_in1k_0.75", version_base="1.1")
 def pretrain(cfg: DictConfig):
 
@@ -52,9 +50,9 @@ def pretrain(cfg: DictConfig):
     )
 
     data = SSLDataModule(
-        train_txt=cfg.datasets.data.train_path,
-        val_txt=cfg.datasets.data.val_path,
-        img_size=cfg.datasets.data.img_size,
+        train_path=cfg.data.train_path,
+        val_path=cfg.data.val_path,
+        img_size=cfg.data.img_size,
         batch_size=per_device_batchsize,  # Adjusted batch size for each device
         num_workers=cfg.training.num_workers
     )
@@ -127,7 +125,6 @@ def pretrain(cfg: DictConfig):
 
 
 if __name__ == "__main__":
-    mp.set_start_method('spawn', force=True)
     torch.set_float32_matmul_precision('high')
 
     pretrain()

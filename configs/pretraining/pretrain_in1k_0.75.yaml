@@ -5,6 +5,7 @@ hydra:
 data:
   train_path: /dtu/datasets1/imagenet_object_localization_patched2019/ILSVRC/Data/CLS-LOC/train
   val_path: /dtu/datasets1/imagenet_object_localization_patched2019/ILSVRC/Data/CLS-LOC/val
+  img_size: [224, 224]
 
 model:
   name: mae_vit_base_patch16_small_decoder
