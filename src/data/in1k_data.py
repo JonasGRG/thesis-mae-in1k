@@ -1,8 +1,31 @@
+import os
+
 import lightning.pytorch as pl
 from PIL import Image
-from torch.utils.data import DataLoader
+from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
+
+# Custom dataset to load validation images without class subfolders
+class ValImageDataset(Dataset):
+    def __init__(self, image_dir, transform=None):
+        self.image_dir = image_dir
+        self.transform = transform
+        # List all image files in the folder
+        self.image_filenames = [os.path.join(image_dir, fname) 
+                                for fname in os.listdir(image_dir) 
+                                if fname.endswith(('.jpg', '.jpeg', '.png'))]
+
+    def __len__(self):
+        return len(self.image_filenames)
+
+    def __getitem__(self, idx):
+        img_path = self.image_filenames[idx]
+        # Open the image
+        image = Image.open(img_path).convert("RGB")
+        if self.transform:
+            image = self.transform(image)
+        return image
 
 
 class SSLDataModule(pl.LightningDataModule):
@@ -30,7 +53,7 @@ class SSLDataModule(pl.LightningDataModule):
     def setup(self, stage=None):
         # Create an instance of the dataset
         self.train_dataset = datasets.ImageFolder(root=self.train_path, transform=self.train_transform)
-        self.val_dataset = datasets.ImageFolder(root=self.val_path, transform=self.val_transform)
+        self.val_dataset = ValImageDataset(image_dir=self.val_path, transform=self.val_transform)
 
 
     def train_dataloader(self):

@@ -50,7 +50,7 @@ class SelfSupervisedModel(pl.LightningModule):
         self.model = mae_vit.__dict__[model_name](norm_pix_loss=norm_pix_loss)
 
     def training_step(self, batch):
-        samples, _ = batch
+        samples, _ = batch # train loader return both images and label
         loss, _, _ = self.model(samples, mask_ratio=self.mask_ratio)
         self.log("train_loss", loss, on_step=True, prog_bar=True, on_epoch=True, sync_dist=True)
         # Log the learning rate
@@ -59,7 +59,7 @@ class SelfSupervisedModel(pl.LightningModule):
         return loss
 
     def validation_step(self, batch):
-        samples, _ = batch
+        samples = batch # val loader returns only images
         loss, _, _ = self.model(samples, mask_ratio=self.mask_ratio)
         self.log("val_loss", loss, on_step=False, prog_bar=True, on_epoch=True, sync_dist=True)
         return loss
