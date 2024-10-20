@@ -10,7 +10,7 @@ class SSLDataModule(pl.LightningDataModule):
             self, 
             train_path, 
             val_path,
-            img_size=(224, 224),
+            img_size=224,
             batch_size=32,
             num_workers=4
             ):
@@ -51,7 +51,7 @@ class SSLDataModule(pl.LightningDataModule):
             )
 
 
-    def _get_transforms(self, is_train=True):
+    def _get_transforms(self):
         mean = IMAGENET_DEFAULT_MEAN
         std = IMAGENET_DEFAULT_STD
         train_transform = transforms.Compose([
