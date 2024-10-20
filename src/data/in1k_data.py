@@ -14,7 +14,7 @@ class ValImageDataset(Dataset):
         # List all image files in the folder
         self.image_filenames = [os.path.join(image_dir, fname) 
                                 for fname in os.listdir(image_dir) 
-                                if fname.endswith(('.jpg', '.jpeg', '.png'))]
+                                if fname.endswith(('.JPEG'))]
 
     def __len__(self):
         return len(self.image_filenames)
