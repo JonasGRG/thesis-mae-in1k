@@ -16,10 +16,10 @@ experiment:
   seed: 42
 
 training:
-  epochs: 800
+  epochs: 300
   base_learning_rate: 0.00015
   batch_size: 1024
-  effective_batch_size: 2048 # Has to be a multiplier of batch_size
+  effective_batch_size: 4096 # Has to be a multiplier of batch_size
   num_workers: 4
   check_val_every_n_epoch: 10
   overfit_batches: 0 # Use all data
@@ -35,7 +35,7 @@ scheduler:
 
 compute:
   accelerator: gpu
-  devices: 2
+  devices: 4
 
 mae:
   mask_ratio: 0.75
