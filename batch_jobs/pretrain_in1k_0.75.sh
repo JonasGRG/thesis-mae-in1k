@@ -8,8 +8,8 @@
 #BSUB -n 8
 ### -- specify that the cores must be on the same host -- 
 #BSUB -R "span[hosts=1]"
-### -- specify that we need 4GB of memory per core/slot -- 
-#BSUB -R "rusage[mem=4GB]"
+### -- specify that we need 6GB of memory per core/slot -- 
+#BSUB -R "rusage[mem=6GB]"
 ### -- Select the resources: 2 gpu in exclusive process mode --
 #BSUB -gpu "num=2:mode=exclusive_process"
 ### -- set walltime limit: hh:mm -- 
