@@ -40,4 +40,4 @@ compute:
 mae:
   mask_ratio: 0.75
 
-resume_from_checkpoint: pretrain_outputs/checkpoints/pretrain_in1k_0.75/version_1/epoch=159-val_loss=0.462.ckpt
+resume_from_checkpoint: pretrain_outputs/checkpoints/pretrain_in1k_0.75/version_2/epoch=199-val_loss=0.457.ckpt
