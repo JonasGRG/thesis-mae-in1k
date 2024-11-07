@@ -17,8 +17,8 @@ experiment:
 
 training:
   epochs: 800
-  learning_rate: 0.0012 # (base_lr (5e-4) * batch_size (1024) * num_gpus (2)) / 256
-  batch_size: 1024
+  learning_rate: 0.003 # (base_lr (5e-4) * batch_size (1024) * num_gpus (2)) / 256
+  batch_size: 768
   num_workers: 4
   check_val_every_n_epoch: 10
   overfit_batches: 0 # Use all data
