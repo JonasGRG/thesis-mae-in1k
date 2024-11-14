@@ -8,9 +8,9 @@
 #BSUB -n 16
 ### -- specify that the cores must be on the same host -- 
 #BSUB -R "span[hosts=1]"
-### -- specify that we need 6GB of memory per core/slot -- 
-#BSUB -R "rusage[mem=6GB]"
-### -- Select the resources: 2 gpu in exclusive process mode --
+### -- specify that we need 3GB of memory per core/slot -- 
+#BSUB -R "rusage[mem=3GB]"
+### -- Select the resources: 4 gpu in exclusive process mode --
 #BSUB -gpu "num=4:mode=exclusive_process"
 ### -- set walltime limit: hh:mm -- 
 #BSUB -W 24:00 
