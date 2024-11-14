@@ -24,7 +24,7 @@ def pretrain(cfg: DictConfig):
         train_path=cfg.data.train_path,
         val_path=cfg.data.val_path,
         img_size=cfg.data.img_size,
-        batch_size=cfg.training.batch_size,  # Adjusted batch size for each device
+        batch_size=cfg.training.batch_size,
         num_workers=cfg.training.num_workers
     )
 
@@ -43,7 +43,7 @@ def pretrain(cfg: DictConfig):
         filename="{epoch:02d}-{val_loss:.3f}",
         save_top_k=-1,
         every_n_epochs=10,
-        save_last=False,
+        save_last=True,
         save_on_train_epoch_end=True,
         monitor="val_loss",
         mode="min",

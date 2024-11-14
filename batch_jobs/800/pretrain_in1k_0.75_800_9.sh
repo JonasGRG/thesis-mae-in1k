@@ -3,15 +3,15 @@
 ### -- specify queue -- 
 #BSUB -q gpuh100
 ### -- set the job Name -- 
-#BSUB -J mae-in1k075
+#BSUB -J 800_run9
 ### -- ask for number of cores (default: 1) -- 
-#BSUB -n 8
+#BSUB -n 16
 ### -- specify that the cores must be on the same host -- 
 #BSUB -R "span[hosts=1]"
 ### -- specify that we need 6GB of memory per core/slot -- 
 #BSUB -R "rusage[mem=6GB]"
 ### -- Select the resources: 2 gpu in exclusive process mode --
-#BSUB -gpu "num=2:mode=exclusive_process"
+#BSUB -gpu "num=4:mode=exclusive_process"
 ### -- set walltime limit: hh:mm -- 
 #BSUB -W 24:00 
 ### -- Specify the output and error file. %J is the job-id -- 
@@ -21,4 +21,4 @@
 
 source /work3/s184202/thesis/thesis-mae-in1k/env/bin/activate
 
-python -m src.pretrain --config-name=pretrain_in1k_0.75_800
+python -m src.pretrain --config-name=pretrain_in1k_0.75_800 resume_from_checkpoint=/work3/s184202/thesis/thesis-mae-in1k/pretrain_outputs/pretrain_in1k_0.75_800/version_8/last.ckpt
