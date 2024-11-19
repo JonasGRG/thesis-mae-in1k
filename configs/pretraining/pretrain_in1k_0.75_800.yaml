@@ -34,7 +34,7 @@ scheduler:
 
 compute:
   accelerator: gpu
-  devices: 4
+  devices: 2
 
 mae:
   mask_ratio: 0.75
