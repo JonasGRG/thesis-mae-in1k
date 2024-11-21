@@ -21,4 +21,4 @@
 
 source /work3/s184202/thesis/thesis-mae-in1k/env/bin/activate
 
-python -m src.pretrain --config-name=pretrain_in1k_0.75_800 resume_from_checkpoint=/work3/s184202/thesis/thesis-mae-in1k/pretrain_outputs/pretrain_in1k_0.75_800/version_4/last.ckpt
+python -m src.pretrain --config-name=pretrain_in1k_0.75_800 resume_from_checkpoint=/work3/s184202/thesis/thesis-mae-in1k/pretrain_outputs/checkpoints/pretrain_in1k_0.75_800/version_4/last.ckpt
